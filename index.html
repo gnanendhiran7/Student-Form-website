@@ -1,0 +1,169 @@
+<style>
+    body {
+        background-color:whitesmoke
+    }
+
+    #name,#age,#course,#email{
+        border:none;
+        padding: 7px;
+        width:220px;
+        border-radius:10px;
+    }
+
+    #btn {
+        border: none;
+        padding: 10px;
+        background-color: navy;
+        color: white;
+        width: 300px;
+        height: 30px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 15px;
+    }
+
+    #btn:hover {
+        background-color: white;
+        color: navy;
+    }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        border: 1px solid black;
+        background-color:lightpink;
+        border: radius 10px;
+        padding: 20px;
+        height: 350px;
+        width:300px;
+        margin:0 auto;
+    }
+
+    select {
+        border: none;
+        width: 250px;
+        height: 30px;
+        border-radius: 15px;
+    }
+    .studentTable{
+        margin-top:40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #one{
+        background-color: navy;
+        color: white;
+        padding:5px;
+        width:100px;
+
+    }
+    
+
+
+</style>
+
+<body>
+    <div class="container">
+        <h1>Student Form</h1>
+        <form>
+        <div><label>Name :</label><input id="name" type="text" placeholder="Enter your name" required></div>
+        <br>
+        <div><label>Age in:</label> <input id="age" type="number" placeholder="Enter your age" required></div>
+        <br>
+        <div><label>Gender:</label><input type="radio" name="gender" value="male" required><label>Male</label><input type="radio"
+                name="gender" value="female"><label>Female</label></div>
+        <br>
+        <div><label>Course:</label><select id="course" required>
+                <option></option>
+                <option>Java Script</option>
+                <option>Mongo Db</option>
+                <option>React.js</option>
+                <option>Node.js</option>
+            </select></div>
+        <br>
+        <div><label>E-mail:</label><input id="email" type="email" placeholder="Enter your e-mail" required></div>
+        <button id="btn">Save</button>
+        </form>
+        </div>
+
+        <div class="studentTable">
+            <table border="1">
+                <thead >
+                    <tr>
+                        <th id="one">Name</th>
+                        <th id="one">Age</th>
+                        <th id="one">Course</th>
+                        <th id="one">Gender</th>
+                        <th id="one">E-mail</th>
+                        <th id="one">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="insert">
+
+
+                </tbody>
+            </table>
+            </div>
+    <script>
+        var btn = document.getElementById("btn")
+        var insert = document.getElementById("insert")
+        btn.addEventListener("click", function () {
+            var name = document.getElementById('name').value
+            var age = document.getElementById('age').value
+            var course = document.getElementById('course').value
+            var gender = document.querySelector('input[name="gender"]:checked')?.value || '';
+            var email = document.getElementById('email').value
+
+            const trElement = document.createElement('tr');
+
+
+            const tdElement1 = document.createElement('td');
+            const tdElement2 = document.createElement('td');
+            const tdElement3 = document.createElement('td');
+            const tdElement4 = document.createElement('td');
+            const tdElement5 = document.createElement('td');
+            const tdElement6 = document.createElement('td');
+
+            const delbtn = document.createElement("button");
+            delbtn.textContent = "Delete";
+            delbtn.style.backgroundColor = "red";
+            delbtn.style.color = "black";
+            delbtn.style.padding = "5px";
+            delbtn.addEventListener("click", function () {
+                insert.removeChild(trElement)
+            })
+            tdElement6.appendChild(delbtn)
+
+
+
+            tdElement1.textContent = name;
+            tdElement2.textContent = age;
+            tdElement3.textContent = course;
+            tdElement4.textContent = gender;
+            tdElement5.textContent = email;
+
+            insert.appendChild(trElement)
+
+            trElement.appendChild(tdElement1);
+            trElement.appendChild(tdElement2);
+            trElement.appendChild(tdElement3);
+            trElement.appendChild(tdElement4);
+            trElement.appendChild(tdElement5);
+            trElement.appendChild(tdElement6);
+
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('course').value = '';
+            document.getElementById('email').value = '';
+            document.querySelectorAll('input[name="gender"]').forEach(el => el.checked = false);
+
+
+
+        })
+    </script>
+
+</body>
